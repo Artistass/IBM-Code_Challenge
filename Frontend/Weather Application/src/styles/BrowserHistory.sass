@@ -1,0 +1,29 @@
+@use "../styles/Variables.sass" as *
+
+.search-history-container
+  background-color: $background-color-main-dark
+
+.search-history-text
+  font-family: $font-Tektur
+  font-size: $font-size-big-2
+  font-weight: bold
+  letter-spacing: $letter-spacing-big-2
+
+.search-history-place-text
+  list-style: none
+  background-color: $secondary-color
+  box-shadow: $text-shadow-2
+  border-radius: 10px
+
+.search-history-place, .search-history-noPlaces
+  font-size: $font-size-button-text-big
+  font-weight: 500
+
+@media (max-width: 768px)
+
+  .search-history-text
+    font-size: $font-size-small-2
+    letter-spacing: $letter-spacing-small-2
+
+  .search-history-place, .search-history-noPlaces
+    font-size: $font-size-button-text-small

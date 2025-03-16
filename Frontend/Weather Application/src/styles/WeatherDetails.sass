@@ -1,0 +1,50 @@
+@use "../styles/Variables.sass" as *
+
+.weather-details-container
+  background-color: $background-color-main-dark
+  opacity: 0
+  transform: translateY(-50px)
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out
+  &.show
+    opacity: 1
+    transform: translateY(0)
+
+.current-weather-text
+  color: $primary-color
+  font-family: $font-Tektur
+  font-size: $font-size-big-2
+  font-weight: bold
+  letter-spacing: $letter-spacing-big-2
+
+.weather-text
+  font-weight: 500
+  color: $primary-color
+  font-size: $font-size-big-1
+
+.weather-details-info
+  border-radius: 10px
+  background-color: $secondary-color
+  box-shadow: $text-shadow-2
+
+.forecast-button
+  border-radius: 50px
+  border: none
+  background-color: $background-color-nav-footer
+  color: $secondary-color
+  font-size: $font-size-button-text-big
+  cursor: pointer
+  transition: transform 0.3s ease, background-color 0.3s ease
+
+  &:hover
+    transform: scale(1.05)
+    background-color: $hover-color
+    color: $primary-color
+
+@media (max-width: 768px)
+  .current-weather-text
+    font-size: $font-size-small-2
+    text-align: center
+
+  .weather-text
+    font-weight: 400
+    font-size: $font-size-small-1

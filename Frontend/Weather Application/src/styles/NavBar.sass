@@ -1,0 +1,27 @@
+@use "../styles/Variables.sass" as *
+
+.navbar-container
+  background-color: $background-color-nav-footer
+
+.navbar-logo
+  width: $logo-width
+
+.navbar-nav .nav-link
+  color: $secondary-color
+  transition: color 0.2s ease
+
+  &:hover
+    color: $hover-color
+
+.collapse
+  transition: max-height 0.3s ease-in-out
+
+.navbar-toggler
+  border: none
+  background-color: $secondary-color
+  color: $secondary-color
+  transition: transform 0.2s ease-in-out
+
+  &:hover
+    color: $hover-color
+    transform: scale(1.1)

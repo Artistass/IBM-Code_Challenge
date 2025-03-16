@@ -1,0 +1,62 @@
+@use "../styles/Variables.sass" as *
+
+.most-viewed-places-container
+  background-color: $background-color-main-dark
+
+.most-viewed-place
+  border-radius: 50px
+  border: none
+  min-width: 150px
+  max-width: 100%
+  transition: all 0.15s ease-in-out
+  word-wrap: break-word
+  white-space: normal
+  box-shadow: $text-shadow-2
+  background-image: url("Background/button-background-img.jpg")
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+  filter: grayscale(0.8)
+
+  &:hover
+    transform: scale(1.05)
+    filter: grayscale(0)
+    cursor: default
+
+.most-viewed-places-text
+  font-family: $font-Tektur
+  font-size: $font-size-big-2
+  font-weight: bold
+  letter-spacing: $letter-spacing-big-2
+
+.most-viewed-place-name
+  font-family: $font-Tektur
+  letter-spacing: $letter-spacing-big-2
+  font-weight: 500
+  font-size: $font-size-button-big
+  color: $secondary-color
+  text-shadow: $text-shadow-1
+
+.most-viewed-place-division
+  color: $secondary-color
+  text-shadow: $text-shadow-1
+  font-size: $font-size-button-text-big
+
+.most-viewed-place-coordinates
+  color: $secondary-color
+  text-shadow: $text-shadow-1
+  font-size: $font-size-button-text-big
+
+@media (max-width: 768px)
+
+  .most-viewed-places-text
+    font-size: $font-size-button-small
+
+  .most-viewed-place-name
+    font-size: $font-size-button-small
+
+  .most-viewed-place-division
+    font-size: $font-size-button-text-small
+
+  .most-viewed-place-coordinates
+    font-size: $font-size-button-text-small

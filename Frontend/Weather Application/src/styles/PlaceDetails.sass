@@ -1,0 +1,51 @@
+@use "../styles/Variables.sass" as *
+
+.place-details
+  background-color: $background-color-main-light
+
+.place-details-button
+  border-radius: 50px
+  border: none
+  min-width: 150px
+  max-width: 100%
+  transition: all 0.15s ease-in-out
+  word-wrap: break-word
+  white-space: normal
+  box-shadow: $text-shadow-2
+  background-image: url("Background/button-background-img.jpg")
+  background-size: cover
+  background-position: center
+  background-repeat: no-repeat
+  filter: grayscale(.8)
+
+  &:hover
+    transform: scale(1.05)
+    filter: grayscale(0)
+
+.place-details-name
+  font-family: $font-Tektur
+  letter-spacing: $letter-spacing-big-2
+  font-weight: 500
+  font-size: $font-size-button-big
+  color: $secondary-color
+  text-shadow: $text-shadow-1
+
+.place-details-division
+  color: $secondary-color
+  text-shadow: $text-shadow-1
+  font-size: $font-size-button-text-big
+
+.place-details-coordinates
+  color: $secondary-color
+  text-shadow: $text-shadow-1
+  font-size: $font-size-button-text-big
+
+@media (max-width: 768px)
+  .place-details-name
+    font-size: $font-size-button-small
+
+  .place-details-division
+    font-size: $font-size-button-text-small
+
+  .place-details-coordinates
+    font-size: $font-size-button-text-small
