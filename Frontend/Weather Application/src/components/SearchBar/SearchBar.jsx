@@ -2,9 +2,12 @@ import "../../styles/SearchBar.sass";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const SearchBar = ({ search, setSearch, places, handlePlaceSelection }) => {
-  const handleSearchChange = (e) => setSearch(e.target.value);
+  //Updates the search input state every time the user types
+  const handleSearchChange = (e) => setSearch(e.target.value); 
 
   const filteredPlaces = places.filter((place) =>
+  //Filters the places list to only show names that include the users input.
+  //Case insensitive search.
     place.name.toLowerCase().includes(search.toLowerCase())
   );
 

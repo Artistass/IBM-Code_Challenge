@@ -8,9 +8,9 @@ const PlaceDetails = ({ place, fetchWeather }) => {
   const [weatherData, setWeatherData] = useState(null);
 
   const fetchWeatherDetails = (placeCode) => {
-    fetchWeather(placeCode, "current")
+    fetchWeather(placeCode, "current") //get current weather
       .then((data) => {
-        setWeatherData(data);
+        setWeatherData(data); // Save the result to state
         setShowWeather(true); // Show weather details when data is fetched
       })
       .catch((error) => console.error("Error fetching weather data:", error));

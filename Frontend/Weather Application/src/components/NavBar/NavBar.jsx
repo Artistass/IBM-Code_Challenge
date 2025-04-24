@@ -26,7 +26,7 @@ export default function NavBar() {
           className="navbar-toggler"
           type="button"
           onClick={toggleNavbar}
-          aria-expanded={isOpen}
+          aria-expanded={isOpen} //	Shows current open/close state of the menu
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>

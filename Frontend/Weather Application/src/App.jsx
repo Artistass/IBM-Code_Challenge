@@ -17,7 +17,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
-  const [places, setPlaces] = useState([]);
+  const [places, setPlaces] = useState([]); // All places
   const [selectedPlaceDetails, setSelectedPlaceDetails] = useState(null);
   const [selectedPlaceWeather, setSelectedPlaceWeather] = useState(null);
   const [moreWeatherDays, setMoreWeatherDays] = useState(null);
@@ -25,16 +25,20 @@ function App() {
   const [yourMostViewedPlaces, setYourMostViewedPlaces] = useState([]);
   const [logs, setLogs] = useState([]);
 
+  // Load initial data
   useEffect(() => {
-    fetchPlaces();
+    fetchPlaces(); // Fetch all available places
   }, []);
 
+   // Update most viewed suggestions
   useEffect(() => {
     if (places.length > 0) {
       mostViewed();
     }
   }, [places]);
 
+
+  // Load most viewed places from local storage
   useEffect(() => {
     const storedPlaces =
       JSON.parse(localStorage.getItem("Your most viewed places")) || [];
@@ -67,21 +71,18 @@ function App() {
     }
   };
 
-  // Handle selection of place
+  // On user selecting a place
   const handlePlaceSelection = (placeName) => {
     const selectedPlace = places.find((place) => place.name === placeName);
     if (selectedPlace) {
       setSearch("");
-      fetchPlaceDetails(selectedPlace.code); // Fetch place details
-
-      // Log the city selection
-      logCitySelection(selectedPlace); // Pass the city name to the log function
-
-      // Update the local storage with viewed places and view count
-      updateMostViewedPlaces(selectedPlace);
+      fetchPlaceDetails(selectedPlace.code); // Show detailed info
+      logCitySelection(selectedPlace);  // Log the visit
+      updateMostViewedPlaces(selectedPlace); // Track views
     }
   };
 
+   // Fetch weather: current or 5-day forecast
   const fetchWeatherData = async (code, type = "current") => {
     try {
       setLoading(true);
@@ -110,11 +111,13 @@ function App() {
     }
   };
 
+  // Select 3 random places from all places
   const mostViewed = async () => {
     const mostPlaces = [...places].sort(() => 0.5 - Math.random());
     setMostViewedPlaces(mostPlaces.slice(0, 3));
   };
 
+  // Track most viewed places in localStorage
   const updateMostViewedPlaces = (place) => {
     let storedPlaces =
       JSON.parse(localStorage.getItem("Your most viewed places")) || [];
@@ -145,35 +148,28 @@ function App() {
     setYourMostViewedPlaces(storedPlaces);
   };
 
-  async function logCitySelection(place) {
-    if (!place || !place.code) {
-      console.error("Invalid place data:", place);
-      return;
-    }
+  // Logs the selected city's code and timestamp to the server
+async function logCitySelection(place) {
 
-    const now = new Date();
-    const formattedTime = `${now.getDate()}.${
-      now.getMonth() + 1
-    }d. ${now.getHours()}:${String(now.getMinutes()).padStart(2, "0")}h.`;
+  // Create a timestamp string: DD.MM HH:mm format
+  const now = new Date();
+  const formattedTime = `${now.getDate()}.${
+    now.getMonth() + 1
+  }d. ${now.getHours()}:${String(now.getMinutes()).padStart(2, "0")}h.`;
 
-    console.log("Sending data:", {
+  try {
+    // Send POST request to the backend
+    await axios.post(`${API}/log-city-selection`, {
       code: place.code,
       timestamp: formattedTime,
     });
 
-    try {
-      const response = await axios.post(`${API}/log-city-selection`, {
-        code: place.code,
-        timestamp: formattedTime,
-      });
-
-      console.log("Response from server:", response.data);
-
-      setLogs((prevLogs) => [...prevLogs, `${place.name} at ${formattedTime}`]);
-    } catch (error) {
-      console.error("Error logging city selection:", error);
-    }
+    // Add a readable log entry to the UI log state
+    setLogs((prevLogs) => [...prevLogs, `${place.name} at ${formattedTime}`]);
+  } catch (error) {
+    setError("Failed to log city selection.", error.message);
   }
+}
 
   return (
     <div>

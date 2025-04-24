@@ -3,11 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/WeatherDetails.sass";
 
 const WeatherDetails = ({ weather, fetchMoreWeatherDays }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false); // State to manage visibility of weather details
 
   useEffect(() => {
     if (weather) {
-      setIsVisible(true); // Trigger visibility change when weather data is available
+      setIsVisible(true); // Set visibility to true when weather data is available
     }
   }, [weather]);
 

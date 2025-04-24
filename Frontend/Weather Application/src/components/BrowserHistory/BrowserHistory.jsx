@@ -16,7 +16,7 @@ export default function BrowserHistory({ logs }) {
           ))}
         </ul>
       ) : (
-        <p className="search-history-noPlaces">No logs available.</p>
+        <p className="search-history-noPlaces">No search history.</p>
       )}
     </div>
   );

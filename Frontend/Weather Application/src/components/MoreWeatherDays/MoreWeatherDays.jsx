@@ -3,15 +3,17 @@ import "../../styles/MoreWeatherDays.sass";
 import { useState, useEffect } from "react";
 
 const MoreWeatherDays = ({ weatherDays, close }) => {
+  // State to check if the screen is mobile-sized
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
+  // Effect to handle screen resizing and update isMobile accordingly
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 768); // Check if the screen width is 768px or less
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize); // Add resize event listener
+    return () => window.removeEventListener("resize", handleResize); // Clean up on unmount
   }, []);
 
   return (
